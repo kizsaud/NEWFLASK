@@ -47,14 +47,14 @@ def upload_file():
             return redirect(request.url)
         if file.filename.endswith('zip'):
             filename=secure_filename(file.filename)
-            file.save(os.path.join(r'/ws/viselvar-sjc/test/logfile22',filename))
+            file.save(os.path.join(r'/ws/viselvar-sjc/test/logfile22/NEWFLASK-MAIN',filename))
             with zipfile.ZipFile(filename,'r') as zipref:
-                zipref.extractall(r'/ws/viselvar-sjc/test/logfile22/UPLOAD_FOLDER')
+                zipref.extractall(r'/ws/viselvar-sjc/test/logfile22/NEWFLASK-MAIN/UPLOAD_FOLDER')
             return redirect(url_for('download_file',name=filename))
 
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
-            file.save(os.path.join(r'/ws/viselvar-sjc/test/logfile22/UPLOAD_FOLDER' ,filename))
+            file.save(os.path.join(r'/ws/viselvar-sjc/test/logfile22/NEWFLASK-MAIN/UPLOAD_FOLDER' ,filename))
             return redirect(url_for('download_file', name=filename))
     return render_template('mainpage.html')
 app.add_url_rule(
@@ -67,7 +67,7 @@ app.add_url_rule(
 def myfile(name):
     jobname=name.strip('.txt')
     if name.endswith('zip'):
-        name=r'/ws/viselvar-sjc/test/logfile22/UPLOAD_FOLDER/TaskLog.Task-1'
+        name=r'/ws/viselvar-sjc/test/logfile22/NEWFLASK-MAIN/UPLOAD_FOLDER/TaskLog.Task-1'
     with open(name,'r') as log:
         f=log.read()
     versionget=open('versiongit.txt','w')
@@ -121,9 +121,9 @@ def myfile(name):
     var=tablebabmaker.tablemaker(jobname,versionget)
     #dict1={}
     #dict1=loglinkdata.loglinkdatamethod()
-    outputfile=r'/ws/viselvar-sjc/test/logfile22/templates/momma.html'
+    outputfile=r'/ws/viselvar-sjc/test/logfile22/NEWFLASK-MAIN/templates/momma.html'
     app.config['TEMPLATES_AUTO_RELOAD'] = True
-    fuk=open(r'/ws/viselvar-sjc/test/logfile22/templates/momma.html','w+')
+    fuk=open(r'/ws/viselvar-sjc/test/logfile22/NEWFLASK-MAIN/templates/momma.html','w+')
     fj=open('momma.html','r')
     for lines in fj:
         #print(lines)
